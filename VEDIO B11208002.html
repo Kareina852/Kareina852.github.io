@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Met Gala：時尚、藝術與學術的跨界巔峰</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fdfcf7',
+                            100: '#fbf8ef',
+                            200: '#f5edd6',
+                            300: '#eedfbc',
+                            400: '#e1c389',
+                            500: '#d4a756',
+                            600: '#c08a41',
+                            700: '#a06a33',
+                            800: '#84552d',
+                            900: '#6d4628',
+                        },
+                        onyx: '#0f0f0f',
+                        crimson: '#dc2626',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.2s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #d4a756, #fdfcf7, #d4a756);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(212, 167, 86, 0.5), transparent);
+            margin: 4rem 0;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        video, img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header / Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-10 px-6">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-900/20 rounded-full blur-[120px] animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-600/10 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-5xl mx-auto">
+            <h2 class="font-display font-light tracking-[0.3em] text-gold-400 mb-4 animate-fade-in">THE METROPOLITAN MUSEUM OF ART</h2>
+            <h1 class="font-display font-extrabold text-6xl md:text-8xl mb-8 tracking-tight animate-slide-up">
+                <span class="text-gradient">Met Gala</span><br/>
+                <span class="text-white opacity-90 text-4xl md:text-6xl">時尚與藝術的巔峰</span>
+            </h1>
+            <div class="flex flex-wrap justify-center gap-4 mt-12 animate-fade-in" style="animation-delay: 0.5s;">
+                <span class="px-6 py-2 glass-card text-gold-300 font-medium">1948 創立</span>
+                <span class="px-6 py-2 glass-card text-gold-300 font-medium">Anna Wintour 主理</span>
+                <span class="px-6 py-2 glass-card text-gold-300 font-medium">藝術資助</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24">
+        
+        <!-- 1. 資訊圖表置頂 -->
+        <section id="infographic" class="scroll-reveal mb-32">
+            <div class="text-center mb-12">
+                <h3 class="font-display text-3xl font-bold text-white mb-4">視覺化洞察 | Infographic</h3>
+                <p class="text-gray-400">數據與里程碑的精煉呈現</p>
+            </div>
+            <div class="glass-card p-4 md:p-8 flex justify-center items-center overflow-hidden">
+                <img src='https://opal.google/board/blobs/1a90015f-1c2d-42de-b852-a72a649bad39' alt='Met Gala 資訊圖表' class="rounded-xl hover:scale-[1.02] transition-transform duration-700" />
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="glass-card p-8 group hover:bg-gold-500/10 transition-colors">
+                    <div class="text-gold-500 text-4xl mb-4 font-display font-bold">2024</div>
+                    <h4 class="text-white font-bold mb-2">睡美人：時尚甦醒</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">運用 AI 與多感官技術，喚醒博物館中脆弱無法穿著的珍稀館藏文物。</p>
+                </div>
+                <div class="glass-card p-8 group hover:bg-gold-500/10 transition-colors">
+                    <div class="text-gold-500 text-4xl mb-4 font-display font-bold">2025</div>
+                    <h4 class="text-white font-bold mb-2">超凡脫俗：黑人風尚</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">首度聚焦黑人男性美學，探討剪裁技術如何成為建立身分認同的工具。</p>
+                </div>
+                <div class="glass-card p-8 group hover:bg-gold-500/10 transition-colors">
+                    <div class="text-gold-500 text-4xl mb-4 font-display font-bold">2,600W</div>
+                    <h4 class="text-white font-bold mb-2">募款總額 (USD)</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">2024 年創紀錄的資金募集，直接投入大都會博物館服裝學院的營運與維護。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 2. 短影片置中 -->
+        <section id="media-center" class="scroll-reveal mb-32">
+            <div class="text-center mb-12">
+                <h3 class="font-display text-3xl font-bold text-white mb-4">動態詮釋 | Digital Media</h3>
+                <p class="text-gray-400 mb-8">透過動態影像感受「時光花園」與「黑人風尚」的視覺衝擊</p>
+            </div>
+            
+            <div class="relative max-w-4xl mx-auto">
+                <div class="aspect-video glass-card p-2 overflow-hidden shadow-2xl">
+                    <video src='https://opal.google/board/blobs/ffff7bbf-c258-4419-ac0e-4a7051130d31' alt='Met Gala 專題短影音' class="w-full h-full object-cover rounded-lg" controls loop muted autoplay></video>
+                </div>
+                
+                <!-- Audio Component -->
+                <div class="mt-10 glass-card p-6 flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center animate-pulse">
+                        <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <p class="text-white font-medium">專題背景配樂</p>
+                        <p class="text-gray-400 text-sm">與視覺主題相得益彰的氛圍營造</p>
+                    </div>
+                    <div class="w-full md:w-auto">
+                        <audio src='https://opal.google/board/blobs/06620543-ee83-4136-9f47-04a6b0698972' alt='背景音樂' class="w-full" controls></audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 3. 報告置底 -->
+        <section id="report" class="scroll-reveal">
+            <div class="text-center mb-16">
+                <h3 class="font-display text-3xl font-bold text-white mb-4">深度專題報告 | Special Report</h3>
+                <p class="text-gray-400">大都會藝術博物館慈善晚宴的學術性與文化影響</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                
+                <!-- Sidebar: Summary -->
+                <aside class="lg:col-span-1">
+                    <div class="sticky top-10">
+                        <div class="glass-card p-6 border-l-4 border-l-gold-500 bg-gold-500/5 mb-8">
+                            <h4 class="text-gold-400 font-bold mb-4 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-gold-500 rounded-full"></span>
+                                報告摘要
+                            </h4>
+                            <ul class="space-y-4 text-sm text-gray-300 leading-relaxed">
+                                <li><strong class="text-white">活動性質：</strong> 紐約大都會博物館最具影響力的慈善募資盛事。</li>
+                                <li><strong class="text-white">近年主題：</strong> 聚焦脆弱服飾的 AI 甦醒 (2024) 與黑人男性美學 (2025)。</li>
+                                <li><strong class="text-white">多重影響：</strong> 2024年募得 2,600 萬美元，推升時尚至藝術殿堂。</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h5 class="text-white font-bold mb-4 text-sm tracking-widest uppercase">學術引用</h5>
+                            <div class="space-y-4 text-xs text-gray-500 leading-relaxed italic">
+                                <p>1. The Met (2024). Sleeping Beauties.</p>
+                                <p>2. Vogue (2024). 2025 Met Gala Theme.</p>
+                                <p>3. Miller, M. L. (2009). Slaves to Fashion.</p>
+                                <p>4. Forbes (2024). The Business of Met Gala.</p>
+                                <p>5. NYT Fashion (2024). Anna Wintour's Brand.</p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <article class="lg:col-span-3 space-y-12">
+                    <div class="glass-card p-8 md:p-12 text-gray-300 leading-relaxed text-lg">
+                        <h2 class="text-3xl font-bold text-white mb-8 border-b border-gray-800 pb-6">Met Gala：時尚藝術與學術的跨界巔峰研究報告</h2>
+                        
+                        <div class="space-y-10">
+                            <section>
+                                <h3 class="text-gold-400 font-bold text-xl mb-4">一、 歷史背景與發展</h3>
+                                <p>
+                                    Met Gala 最早於 1948 年由時尚公關 Eleanor Lambert 發起，最初僅是為籌措 The Costume Institute（服裝學院）營運經費而舉行的社會名流聚會。1972 年起，在顧問 Diana Vreeland 的推動下，晚宴開始與年度大展的主題密切結合，增加了藝術策展的厚度。
+                                </p>
+                                <p class="mt-4">
+                                    1995 年，<span class="text-white font-medium">安娜·溫圖 (Anna Wintour)</span> 接掌後，將活動規模擴大至全球演藝與商業領域，使其贏得了「時尚界奧斯卡」的美譽。這不僅是一場社交晚宴，更是博物館春季展覽的正式揭幕儀式。
+                                </p>
+                            </section>
+
+                            <section>
+                                <h3 class="text-gold-400 font-bold text-xl mb-4">二、 近年核心主題析論</h3>
+                                <p>根據近年文獻與策展報導，Met Gala 的主題已從視覺美感轉向對技術、時間與族群身分的深度探索：</p>
+                                
+                                <div class="mt-6 space-y-6">
+                                    <div class="bg-white/5 p-6 rounded-xl border-l-2 border-gold-500/50">
+                                        <h4 class="text-white font-bold mb-2">1. 2024 年：技術與感官的融合</h4>
+                                        <p class="text-base">主題「Sleeping Beauties: Reawakening Fashion」旨在喚醒館藏中珍稀且極度脆弱的存檔服飾。策展團隊利用了 AI、AR 與感官實驗等先進技術，嘗試喚醒這些文物的感官記憶。當年度著裝要求定為「時光花園」，啟發自 J.G. Ballard 的短篇小說。</p>
+                                    </div>
+                                    <div class="bg-white/5 p-6 rounded-xl border-l-2 border-gold-500/50">
+                                        <h4 class="text-white font-bold mb-2">2. 2025 年：黑人文化美學的再定義</h4>
+                                        <p class="text-base">主題「Superfine: Tailoring Black Style」深度探討 Black Dandyism（黑人丹迪主義）。這是活動史上極少數專門聚焦於男性時尚，回溯了從 18 世紀以來，黑人男性如何透過剪裁技術來建立社經權力並挑戰傳統框架，在黑人散居的歷史脈絡中重構身分認同。</p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <h3 class="text-gold-400 font-bold text-xl mb-4">三、 時尚產業與文化賦權的影響</h3>
+                                <p>
+                                    從經濟面來看，Met Gala 是服裝學院最重要的資金來源。由於該部門是大都會藝術博物館中唯一需自籌資金的科系，活動的募款成效直接決定了服裝文物的修復與保存品質。
+                                </p>
+                                <p class="mt-4">
+                                    而在文化層面，策展人 Andrew Bolton 將時尚視為 Fine Art（精緻藝術）的論點，透過晚宴紅毯的全球轉播得到了廣泛驗證。活動創造的 EMV（媒體價值）以億美元計，迅速將艱澀的時尚理論轉化為大眾審美趨勢。
+                                </p>
+                            </section>
+
+                            <div class="p-8 bg-gold-500/10 rounded-2xl border border-gold-500/20">
+                                <h3 class="text-white font-bold text-xl mb-3">簡要結論</h3>
+                                <p class="text-base italic">
+                                    Met Gala 已不僅僅是一場展示華服的盛宴，它不僅成功轉型為藝術與學術展覽的募資引擎，更在近年主題中展現了對技術修復、性別框架與種族史觀的深刻反思。它串聯了博物館與全球大眾，使時尚成為一種可供深度閱讀與文化對話的媒介。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Footer Placement -->
+        <div class="mt-24 py-12 border-t border-gray-900 text-center space-y-4">
+            <div class="text-xl tracking-widest text-gray-400">
+                【主題探索報告】by <span class="italic text-crimson font-medium">Famidoc Chang</span>
+            </div>
+            <div class="text-gray-600 font-display text-sm">
+                學號：A888888888
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
