@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時尚圈的「春晚」？帶你拆解 Met Gala</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffdf0',
+                            100: '#fef9cd',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        },
+                        onyx: '#0f172a',
+                        crimson: '#991b1b',
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                        body: ['Noto Sans TC', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'reveal': 'reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        reveal: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #facc15, #f87171, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(250, 204, 21, 0.5), transparent);
+        }
+
+        .bento-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(250, 204, 21, 0.4);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #facc15;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 scale-105">
+            <img src='https://opal.google/board/blobs/ac815ba0-c2d2-443b-b983-c4a2425b4c26' alt='Met Gala Banner' class="w-full h-full object-cover opacity-60 filter brightness-75" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-onyx/40 to-onyx"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <span class="inline-block px-4 py-1 mb-6 text-sm font-semibold tracking-widest text-gold-400 uppercase border border-gold-400/30 rounded-full glass-card animate-pulse">
+                B11208002 | Special Feature
+            </span>
+            <h1 class="text-5xl md:text-8xl font-black mb-8 leading-tight font-display tracking-tighter">
+                時尚圈的<span class="text-gradient">「春晚」</span>？<br>
+                <span class="text-white">拆解 Met Gala</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+                從名媛晚餐到全球頂級紅毯生死鬥，帶你換個視角看這場權力與資本的華麗遊戲。
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-20">
+        
+        <!-- Intro Text Area -->
+        <section class="mb-32">
+            <div class="glass-card p-8 md:p-16 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-gold-400 to-crimson"></div>
+                <p class="text-xl md:text-2xl leading-relaxed text-slate-200 first-letter:text-6xl first-letter:font-bold first-letter:text-gold-400 first-letter:mr-3 first-letter:float-left">
+                    每年五月的第一個星期一，當你打開社群媒體，版面大概率會被一群穿著奇裝異服、極盡浮誇之能事的明星給洗版。這場被戲稱為「時尚圈春晚」的盛會，正是鼎鼎大名的 Met Gala。
+                </p>
+                <p class="mt-6 text-xl text-slate-400">
+                    但如果你以為這只是一群有錢有閒的人在比拼誰穿得更像外星人，那可就太小看它了。隱藏在華服與鎂光燈背後的，其實是一套極其嚴密的權力結構、文化角力與資本遊戲。
+                </p>
+            </div>
+        </section>
+
+        <!-- Bento Grid: The 1-2 Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-32">
+            
+            <!-- Section 1: What is Met Gala? -->
+            <div class="md:col-span-7 glass-card p-10 bento-item flex flex-col justify-between border-t-4 border-t-gold-400">
+                <div>
+                    <span class="text-gold-400 font-bold tracking-widest text-sm uppercase">Chapter 01</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6">什麼是 Met Gala？</h2>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        這場派對為誰而開？為的是替紐約大都會藝術博物館的「服裝學院（Costume Institute）」籌集一整年的營運經費。
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-gold-400/20 flex items-center justify-center flex-shrink-0">
+                                <span class="text-gold-400 font-bold">1</span>
+                            </div>
+                            <p class="text-slate-400"><strong class="text-white">受邀名單極具排他性：</strong> 所有的生殺大權，都掌握在「時尚女魔頭」安娜·溫圖手裡。</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-gold-400/20 flex items-center justify-center flex-shrink-0">
+                                <span class="text-gold-400 font-bold">2</span>
+                            </div>
+                            <p class="text-slate-400"><strong class="text-white">權力排行榜：</strong> 名單上有誰，就代表今年誰最紅、誰掌握了話語權。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Decorative Box -->
+            <div class="md:col-span-5 bg-gradient-to-br from-crimson/80 to-purple-900 rounded-[24px] p-10 flex items-center justify-center relative group overflow-hidden">
+                <div class="text-center group-hover:scale-110 transition-transform duration-500">
+                    <h3 class="text-6xl font-black opacity-20">VOGUE</h3>
+                    <p class="text-xl font-bold tracking-widest">THE MET GALA</p>
+                    <p class="text-sm opacity-60">MAY 1ST MONDAY</p>
+                </div>
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+            </div>
+
+            <!-- Section 2: History Timeline -->
+            <div class="md:col-span-12 glass-card p-10 bento-item">
+                <span class="text-gold-400 font-bold tracking-widest text-sm uppercase">Chapter 02</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-12">它是如何變身成現在這個「瘋狂模樣」的？</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="relative pl-8 border-l border-gold-400/30">
+                        <div class="absolute top-0 left-[-4px] w-2 h-2 rounded-full bg-gold-400"></div>
+                        <h4 class="font-bold text-xl mb-2">1948 初創期</h4>
+                        <p class="text-slate-400 text-sm">50 美元的社交晚餐，對象是紐約的傳統「老錢」與名媛，純粹的階級社交圈。</p>
+                    </div>
+                    <div class="relative pl-8 border-l border-gold-400/30">
+                        <div class="absolute top-0 left-[-4px] w-2 h-2 rounded-full bg-gold-400"></div>
+                        <h4 class="font-bold text-xl mb-2">1972 轉型期</h4>
+                        <p class="text-slate-400 text-sm">黛安娜·佛里蘭接手，將派對搬進博物館並引入「變裝主題」，好萊塢明星開始進場。</p>
+                    </div>
+                    <div class="relative pl-8 border-l border-gold-400/30">
+                        <div class="absolute top-0 left-[-4px] w-2 h-2 rounded-full bg-gold-400"></div>
+                        <h4 class="font-bold text-xl mb-2">1995-現今 極致期</h4>
+                        <p class="text-slate-400 text-sm">安娜·溫圖正式接手。門票飆升至天價，將晚宴打造成全球矚目的當代文化奇觀。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Public View (Interactive-ish layout) -->
+        <section class="mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-black mb-4">大眾眼中的 Met Gala</h2>
+                <div class="w-24 h-1 bg-gold-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 hover:bg-white/5 transition-colors">
+                    <div class="text-4xl mb-6">🏆</div>
+                    <h4 class="text-2xl font-bold mb-4">時尚界的奧斯卡</h4>
+                    <p class="text-slate-400">設計師的狂想與明星個人特質相互博弈的視覺藝術競技場，靈魂碰撞的舞台。</p>
+                </div>
+                <div class="glass-card p-8 hover:bg-white/5 transition-colors">
+                    <div class="text-4xl mb-6">🍕</div>
+                    <h4 class="text-2xl font-bold mb-4">社群媒體的迷因產地</h4>
+                    <p class="text-slate-400">從蕾哈娜的煎蛋裙到全民 P 圖大賽，高冷的藝術與大眾幽默在此完成完美扣合。</p>
+                </div>
+                <div class="glass-card p-8 hover:bg-white/5 transition-colors">
+                    <div class="text-4xl mb-6">🎨</div>
+                    <h4 class="text-2xl font-bold mb-4">把衣服當成藝術品</h4>
+                    <p class="text-slate-400">服裝反映了歷史、文化、社會價值觀，甚至是政治表態，是一場符號學的展演。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Controversy (Darker Tone) -->
+        <section class="mb-32 py-16 bg-gradient-to-r from-onyx via-slate-900 to-onyx rounded-[40px] px-8 md:px-16 border border-white/5">
+            <h2 class="text-3xl md:text-5xl font-black mb-12 text-center text-gradient">華麗背後的爭議：名利場的陰影</h2>
+            
+            <div class="space-y-12 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="text-5xl font-black text-white/10 shrink-0">01</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gold-400 mb-2">菁英遊戲：窮人免談</h4>
+                        <p class="text-slate-400 leading-relaxed">單張門票 7.5 萬美元。在貧富差距擴大的今天，這是否只是一場包裹著慈善外衣的「富豪炫富狂歡」？</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="text-5xl font-black text-white/10 shrink-0">02</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gold-400 mb-2">文化禁區與挪用</h4>
+                        <p class="text-slate-400 leading-relaxed">西方設計師對異國文化的想像往往流於表面，常引發「文化挪用」與強化刻板印象的激烈討論。</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="text-5xl font-black text-white/10 shrink-0">03</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gold-400 mb-2">文物保護 vs. 個人虛榮</h4>
+                        <p class="text-slate-400 leading-relaxed">金·卡戴珊硬穿瑪麗蓮·夢露原版禮服引發的損傷爭議，暴露出鎂光燈下的道德邊界問題。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Future (Futuristic Layout) -->
+        <section class="mb-20">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="h-px bg-gold-400 flex-grow"></div>
+                <h2 class="text-3xl font-black uppercase tracking-widest shrink-0">The Future Horizon</h2>
+                <div class="h-px bg-gold-400 flex-grow"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 order-2 md:order-1">
+                    <div class="group">
+                        <h4 class="text-2xl font-bold mb-3 flex items-center gap-3">
+                            <span class="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></span>
+                            科技與時尚深度結合
+                        </h4>
+                        <p class="text-slate-400 pl-6 border-l border-slate-700 group-hover:border-cyan-400 transition-colors">AI 生成設計、AR 虛擬紅毯、甚至元宇宙晚宴。未來，你或許能透過 VR 走入現場。</p>
+                    </div>
+                    <div class="group">
+                        <h4 class="text-2xl font-bold mb-3 flex items-center gap-3">
+                            <span class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                            環保才是最潮的
+                        </h4>
+                        <p class="text-slate-400 pl-6 border-l border-slate-700 group-hover:border-green-400 transition-colors">「穿一次就丟」已不再正確。二手老衣改造 (Upcycling) 與古董服飾將成為紅毯新寵。</p>
+                    </div>
+                    <div class="group">
+                        <h4 class="text-2xl font-bold mb-3 flex items-center gap-3">
+                            <span class="w-3 h-3 bg-purple-400 rounded-full animate-pulse"></span>
+                            權力核心的去中心化
+                        </h4>
+                        <p class="text-slate-400 pl-6 border-l border-slate-700 group-hover:border-purple-400 transition-colors">亞洲巨星與 TikTok 網紅強勢踏上紅毯。掌握流量密碼的網路社群領袖正在取代傳統貴族。</p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 glass-card p-12 relative overflow-hidden aspect-square flex items-center justify-center">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gold-400/10 via-transparent to-transparent"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="text-8xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 italic">NEXT</div>
+                        <p class="tracking-[1em] text-xs font-bold text-gold-400 uppercase">Evolution</p>
+                    </div>
+                    <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-gold-400/5 rounded-full blur-3xl"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="mt-40 text-center px-6">
+            <div class="max-w-3xl mx-auto">
+                <p class="text-2xl md:text-3xl font-light italic leading-relaxed text-slate-200">
+                    「Met Gala 從來就不只是一場派對。它是一面鏡子，映照出人類對美的極致追求，也折射出當代社會的階級、資本與文化焦慮。」
+                </p>
+                <div class="mt-12 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full border-2 border-gold-400 flex items-center justify-center mb-6">
+                        <span class="text-gold-400 font-bold">V</span>
+                    </div>
+                    <p class="text-slate-500 uppercase tracking-widest text-sm">The Logic Behind The Glamour</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Space -->
+    <div class="pb-24"></div>
+
+    <script>
+        // Simple reveal on scroll observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bento-item, .glass-card').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
