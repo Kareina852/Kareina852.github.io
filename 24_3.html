@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紀實Talk - NotebookLM 知識庫</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 1rem;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Resource Library Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.2rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background-color: #f1f2f6;
+        }
+
+        .faq-answer {
+            padding: 0 1.2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.2rem;
+            max-height: 500px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Chatbox */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-widget.collapsed {
+            transform: translateY(calc(100% - 50px));
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .chat-body {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #fafafa;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .message.bot {
+            background: #e0e0e0;
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+
+        .message.user {
+            background: var(--secondary-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        #chatInput {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        #sendBtn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .chat-widget {
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>紀實Talk 學生知識庫</h1>
+        <p>來自 NotebookLM 檔案的文化、地緣政治與生命智慧</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜尋資源、關鍵字或問題... (如: AI, 經濟, 外星人)">
+        </div>
+    </header>
+
+    <main>
+        <h2>📚 資源庫 (Resource Library)</h2>
+        <div class="resource-grid" id="resourceGrid">
+            </div>
+
+        <h2>❓ 常見問題 (FAQ)</h2>
+        <div id="faqContainer">
+            </div>
+    </main>
+
+    <div class="chat-widget collapsed" id="chatWidget">
+        <div class="chat-header" id="chatHeader">
+            <span>🤖 NotebookLM 智能助手</span>
+            <span id="chatToggleIcon">▲</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot">你好！我是基於「紀實Talk」檔案庫訓練的助手。想問關於 AI、2026經濟預測、歷史謎團或國際局勢的問題嗎？</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="輸入問題...">
+            <button id="sendBtn">發送</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Knowledge Base Data ---
+        const resources = [
+            { tag: '科技與未來', title: '十年原畫師看完AI 30秒出的圖當場崩潰！', desc: '老闆直言：時代變了，不向AI低頭只能滾蛋！探討生成式 AI 對傳統藝術工作者的毀滅性打擊與轉型契機。' },
+            { tag: '經濟與社會', title: '2026經濟有多難？北上廣中產階級正在集體「消失」！', desc: '失業潮只是開始，一般人該如何保命？分析未來幾年的經濟下行風險與保命策略。' },
+            { tag: '國際地緣政治', title: '美俄情報網被耍了？中國深藏不露的大殺器現身', desc: '中美俄三方博弈分析，探討情報戰背後隱藏的真實戰略意圖。' },
+            { tag: '健康與醫學', title: '為何美國老年癡呆在消失，中國卻暴漲成全球第一？', desc: '專家揭秘：探討飲食習慣（如喝茶迷思）與阿茲海默症之間的潛在關聯與科學研究。' },
+            { tag: '神秘與天文', title: '月球背面挖出非地球造物？科學家被勒令集體封口！', desc: '探討月球背面的驚天秘密，以及對人類文明史可能造成的顛覆性影響。' },
+            { tag: '歷史考古', title: '三星堆真是外星人創造的？', desc: '2026最新發現：探討幾件無法用常理解釋的文物，以及外星文明干預地球歷史的可能性。' }
+        ];
+
+        const faqs = [
+            { q: 'AI 繪圖會完全取代原畫師嗎？', a: '根據檔案資料，AI 只需30秒就能產出高品質圖像，這讓許多十年經驗的原畫師感到崩潰。企業老闆認為「時代變了」，若不學習與 AI 協作，將面臨被淘汰的命運。' },
+            { q: '2026年的經濟前景為何不樂觀？', a: '知識庫指出，2026年將面臨重大經濟關卡，北上廣等大城市的中產階級正面臨財富縮水與失業潮。專家建議必須關注特定保值資產，並調整投資策略以求保命。' },
+            { q: '喝茶真的會導致老年癡呆嗎？', a: '檔案標題提到「為何美國老年癡呆在消失，中國卻暴漲成全球第一？專家揭秘：罪魁禍首就是喝茶！」，這反映了某些專家對於特定飲食習慣（如不當飲茶或茶葉農藥殘留）對腦部健康影響的爭議性探討。' },
+            { q: '月球背面和三星堆有什麼關聯？', a: '兩者在檔案中均被視為「非地球文明」或「外星造物」的潛在證據。科學家在月球背面發現異常造物，而三星堆出土的文物也被認為超越了當時人類的技術水準。' }
+        ];
+
+        // --- Render Functions ---
+        function renderResources(data) {
+            const grid = document.getElementById('resourceGrid');
+            grid.innerHTML = data.map(item => `
+                <div class="resource-card">
+                    <span class="tag">${item.tag}</span>
+                    <h3>${item.title}</h3>
+                    <p style="margin-top:10px; color:#666; font-size:0.9rem;">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderFAQs(data) {
+            const container = document.getElementById('faqContainer');
+            container.innerHTML = data.map((item, index) => `
+                <div class="faq-item" onclick="toggleFAQ(${index})">
+                    <div class="faq-question">${item.q} <span>+</span></div>
+                    <div class="faq-answer"><p>${item.a}</p></div>
+                </div>
+            `).join('');
+        }
+
+        // --- Interactive Logic ---
+        function toggleFAQ(index) {
+            const items = document.querySelectorAll('.faq-item');
+            items[index].classList.toggle('active');
+            const span = items[index].querySelector('span');
+            span.textContent = items[index].classList.contains('active') ? '-' : '+';
+        }
+
+        // --- Search Logic ---
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const term = e.target.value.toLowerCase();
+            
+            const filteredResources = resources.filter(r => 
+                r.title.toLowerCase().includes(term) || r.desc.toLowerCase().includes(term) || r.tag.toLowerCase().includes(term)
+            );
+            renderResources(filteredResources);
+
+            const filteredFAQs = faqs.filter(f => 
+                f.q.toLowerCase().includes(term) || f.a.toLowerCase().includes(term)
+            );
+            renderFAQs(filteredFAQs);
+        });
+
+        // --- Chatbox Logic ---
+        const chatWidget = document.getElementById('chatWidget');
+        const chatHeader = document.getElementById('chatHeader');
+        const chatToggleIcon = document.getElementById('chatToggleIcon');
+        const chatBody = document.getElementById('chatBody');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        chatHeader.addEventListener('click', () => {
+            chatWidget.classList.toggle('collapsed');
+            chatToggleIcon.textContent = chatWidget.classList.contains('collapsed') ? '▲' : '▼';
+        });
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+            msgDiv.textContent = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function handleChatResponse(userText) {
+            const lowerText = userText.toLowerCase();
+            let response = "抱歉，知識庫中沒有找到完全匹配的資料。您可以嘗試搜尋「AI」、「經濟」、「外星人」或「歷史」。";
+
+            if (lowerText.includes('ai') || lowerText.includes('原畫')) {
+                response = "根據檔案《十年原畫師看完AI 30秒出的圖當場崩潰》，AI 的快速發展正嚴重衝擊視覺設計產業，雇主更傾向於使用 AI 提高效率，這要求傳統工作者必須迅速轉型。";
+            } else if (lowerText.includes('經濟') || lowerText.includes('2026') || lowerText.includes('財富')) {
+                response = "知識庫警告 2026 年可能面臨嚴重的經濟挑戰。檔案《2026經濟有多難？》和《財富大洗劫開始》指出，中產階級面臨資產縮水，建議提前佈局特定的保值資產來應對失業潮。";
+            } else if (lowerText.includes('外星') || lowerText.includes('三星堆') || lowerText.includes('月球')) {
+                response = "這是一個熱門話題！根據檔案庫，不僅月球背面疑似發現非地球造物導致科學家封口，連三星堆出土的奇特文物也被懷疑是外星文明的產物。另外還有 CIA 研究員爆料外星人混在人群中的傳聞。";
+            } else if (lowerText.includes('健康') || lowerText.includes('茶') || lowerText.includes('癡呆')) {
+                response = "檔案《為何美國老年癡呆在消失，中國卻暴漲成全球第一？》探討了飲食習慣的影響，專家提出「罪魁禍首是喝茶」的驚人觀點，探討其中潛在的健康風險因素。";
+            } else if (lowerText.includes('中美') || lowerText.includes('川普')) {
+                response = "關於國際局勢，檔案提及川普訪華專機落地後的重大舉動，以及美俄情報網的戰略轉變，顯示中美對抗與大國博弈正在發生劇烈變化。";
+            }
+
+            setTimeout(() => {
+                addMessage(response, 'bot');
+            }, 600);
+        }
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (text) {
+                addMessage(text, 'user');
+                chatInput.value = '';
+                handleChatResponse(text);
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // Initialize
+        renderResources(resources);
+        renderFAQs(faqs);
+    </script>
+</body>
+</html>
